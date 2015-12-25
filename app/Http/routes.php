@@ -36,5 +36,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/home', 'HomeController@index');
     Route::group(['middleware' => 'auth'], function () {
 
+        // Водиели
+        Route::get('/drivers', 'DriverController@index');
     });
 });
