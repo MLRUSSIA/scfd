@@ -48,8 +48,9 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/') }}">Главная</a></li>
-                    @if(! Auth::guest())
+                    @if(Auth::check())
                         <li><a href="{{ url('/home') }}">Рабочий стол</a></li>
+                        <li><a href="{{ url('/drivers') }}">Водители</a></li>
                     @endif
                 </ul>
 

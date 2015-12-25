@@ -9,5 +9,7 @@ use App\Http\Controllers\Controller;
 
 class DriverController extends Controller
 {
-    //
+    public function index(){
+        return 'ok';
+    }
 }
