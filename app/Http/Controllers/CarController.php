@@ -49,4 +49,9 @@ class CarController extends Controller
         ]);
         return redirect('cars/all');
     }
+
+    public function single($id){
+        $car = User::find(Auth::user()->id)->cars->find($id);
+        return view('pages.car', compact('car'));
+    }
 }

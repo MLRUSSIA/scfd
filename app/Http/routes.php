@@ -38,5 +38,6 @@ Route::group(['middleware' => 'web'], function () {
         // Автомобили
         Route::get('/cars/{sort}', 'CarController@index');
         Route::post('/cars', 'CarController@create');
+        Route::get('/car/{id}', 'CarController@single');
     });
 });
