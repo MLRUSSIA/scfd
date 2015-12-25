@@ -13,6 +13,29 @@
                                 data-target="#myModal">
                             Добавить водителя
                         </button>
+
+                        <hr>
+
+                        <form class="form-inline text-center" method="POST" action="{{ url('/drivers') }}">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="fio" placeholder="ФИО">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Поиск</button>
+                        </form>
+
+                        <hr>
+
+                        <div class="list-group">
+                            <a href="#" class="list-group-item">
+                                <h4 class="list-group-item-heading">Шпилька Евгений Александрович</h4>
+                                <p class="list-group-item-text"><span class="strong">Дата рождения</span> 13.03.1988</p>
+                            </a>
+                        </div>
+
                     </div>
                 </div>
             </div>
