@@ -31,5 +31,6 @@ Route::group(['middleware' => 'web'], function () {
 
         // Водиели
         Route::get('/drivers', 'DriverController@index');
+        Route::post('/drivers', 'DriverController@create');
     });
 });
