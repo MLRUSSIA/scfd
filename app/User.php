@@ -28,4 +28,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Driver');
     }
+
+    public function car()
+    {
+        return $this->hasOne('App\Car');
+    }
 }

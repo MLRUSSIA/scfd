@@ -24,7 +24,6 @@ class DriverController extends Controller
             'drivers_license_date' => date('d.m.Y', strtotime ($request->drivers_license_date)),
             'user_id' => Auth::user()->id
         ]);
-
         return redirect('drivers');
     }
 

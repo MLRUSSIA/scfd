@@ -34,5 +34,9 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('/drivers', 'DriverController@create');
         Route::post('/drivers/search/{input}', 'DriverController@search');
         Route::get('/driver/{id}', 'DriverController@single');
+
+        // Автомобили
+        Route::get('/cars/{sort}', 'CarController@index');
+        Route::post('/cars', 'CarController@create');
     });
 });
