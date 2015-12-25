@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Car;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -11,17 +12,31 @@ use Illuminate\Support\Facades\Auth;
 
 class CarController extends Controller
 {
-    public function index($sort){
-        if($sort == 'all'){$cars = Car::whereNotIn('status', ['delete'])->get();}
-        if($sort == 'free'){$cars = Car::where('status', 'free')->get();}
-        if($sort == 'job'){$cars = Car::where('status', 'job')->get();}
-        if($sort == 'warning'){$cars = Car::where('status', 'warning')->get();}
-        if($sort == 'delete'){$cars = Car::where('status', 'delete')->get();}
-
+    public function index($sort)
+    {
+        $user_id = Auth::user()->id;
+        switch ($sort) {
+            case "all":
+                $cars = User::find($user_id)->cars()->whereNotIn('status', ['delete'])->orderBy('updated_at', 'desc')->get();
+                break;
+            case "free":
+                $cars = User::find($user_id)->cars()->where('status', 'free')->orderBy('updated_at', 'desc')->get();
+                break;
+            case "job":
+                $cars = User::find($user_id)->cars()->where('status', 'job')->orderBy('updated_at', 'desc')->get();
+                break;
+            case "warning":
+                $cars = User::find($user_id)->cars()->where('status', 'warning')->orderBy('updated_at', 'desc')->get();
+                break;
+            case "delete":
+                $cars = User::find($user_id)->cars()->where('status', 'delete')->orderBy('updated_at', 'desc')->get();
+                break;
+        }
         return view('pages.cars', compact('cars'));
     }
 
-    public function create(Request $request){
+    public function create(Request $request)
+    {
         Car::create([
             'mark' => $request->mark,
             'model' => $request->model,

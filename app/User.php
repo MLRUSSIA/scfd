@@ -33,4 +33,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Car');
     }
+
+    public function cars()
+    {
+        return $this->hasMany('App\Car');
+    }
 }
