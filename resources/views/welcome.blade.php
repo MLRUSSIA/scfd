@@ -9,6 +9,7 @@
 
                 <div class="panel-body">
                     Your Application's Landing Page.
+                    {{ method_field('DELETE') }}
                 </div>
             </div>
         </div>
