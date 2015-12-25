@@ -36,4 +36,9 @@ class DriverController extends Controller
             ->paginate(15);
         return $item;
     }
+
+    public function single($id){
+        $driver = Driver::with('user')->find($id);
+        return view('pages.driver', compact('driver'));
+    }
 }
