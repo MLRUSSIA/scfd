@@ -52,6 +52,7 @@
                     @if(Auth::check())
                         <li><a href="{{ url('/home') }}">Рабочий стол</a></li>
                         <li><a href="{{ url('/drivers') }}">Водители</a></li>
+                        <li><a href="{{ url('/cars/all') }}">Автомобили</a></li>
                     @endif
                 </ul>
 
