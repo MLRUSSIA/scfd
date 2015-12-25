@@ -18,13 +18,22 @@ class DriverController extends Controller
     public function create(Request $request){
         Driver::create([
             'fio' => $request->fio,
-            'birthday' => $request->birthday,
+            'birthday' => date('d.m.Y', strtotime ($request->birthday)),
             'passport_number' => $request->passport_number,
             'drivers_license_number' => $request->drivers_license_number,
-            'drivers_license_date' => $request->drivers_license_date,
+            'drivers_license_date' => date('d.m.Y', strtotime ($request->drivers_license_date)),
             'user_id' => Auth::user()->id
         ]);
 
         return redirect('drivers');
+    }
+
+    public function search($input){
+        $item = Driver::where('fio', 'like', '%'.$input.'%')
+            ->orWhere('passport_number', 'like', '%'.$input.'%')
+            ->orderBy('fio', 'asc')
+            ->select('id', 'fio', 'birthday')
+            ->paginate(15);
+        return $item;
     }
 }

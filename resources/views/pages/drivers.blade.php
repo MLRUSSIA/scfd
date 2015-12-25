@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container spark-screen">
-        <div class="row">
+        <div class="row" id="drivers">
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">Водители</div>
@@ -16,23 +16,24 @@
 
                         <hr>
 
-                        <form class="form-inline text-center" method="POST" action="{{ url('/drivers') }}">
                             <div class="form-group">
                                 <div class="form-group">
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" name="fio" placeholder="ФИО">
+                                    <div class="col-md-11">
+                                        <input type="text" class="form-control" name="fio" placeholder="ФИО или Серия и номер паспорта" v-on:keyup="search" v-model="input">
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Поиск</button>
-                        </form>
+                            <button class="btn btn-primary">Поиск</button>
 
                         <hr>
+                        <p></p>
+                        <h3 v-if="ok">Обнаруженно водителей <span class="label label-default">@{{ drivers.total }}</span></h3>
+                        <hr>
 
-                        <div class="list-group">
-                            <a href="#" class="list-group-item">
-                                <h4 class="list-group-item-heading">Шпилька Евгений Александрович</h4>
-                                <p class="list-group-item-text"><span class="strong">Дата рождения</span> 13.03.1988</p>
+                        <div class="list-group" v-if="ok">
+                            <a href="{{ url('driver') }}/@{{ driver.id }}" class="list-group-item" v-for="driver in drivers.data">
+                                <h4 class="list-group-item-heading">@{{ driver.fio }}</h4>
+                                <p class="list-group-item-text"><span class="strong">Дата рождения</span> @{{ driver.birthday }}</p>
                             </a>
                         </div>
 
